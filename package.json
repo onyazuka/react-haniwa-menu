@@ -1,6 +1,6 @@
 {
   "name": "react-haniwa-menu",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "dependencies": {
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
