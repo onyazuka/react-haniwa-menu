@@ -45,6 +45,8 @@ Please look src/examples
 You can use createMenu function from MenuFactory to create multilevel menu. 
 You can create a simple multilevel menu like this:
 ```javascript
+import {createMenu} from 'react-haniwa-menu';
+
 // simple facade to not write same classes each time we need to create a menu
 function createAdminDashboardMenu(opts) {
   const { activator, items } = opts;
@@ -137,6 +139,7 @@ createAdminDashboardMenu({
 ...
 ```
 You can also provide different menu creating functions to the createMenu() factory.
+To create menu directly use import Menu from 'react-haniwa-menu';
 
 ## Props
 
@@ -165,6 +168,7 @@ You can also provide different menu creating functions to the createMenu() facto
 
 ## Animations
 You can find some basic animations in MenuAnimations.js. You can also write your own. It is quite simple - animation function accepts two arguments: element itself and onFinish callback. They should call this callback when all the work is finished.
+All available animations can be obtained with import {MenuAnimations} from 'react-haniwa-menu';
 
 
 
