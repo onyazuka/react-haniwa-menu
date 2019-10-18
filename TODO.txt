@@ -1,0 +1,21 @@
+Menu component planning:
++	- menu structure
++	- accepts items
++	- builds menu
++	- accepts selectors
++	- shows on: click, hover
++	- shows at: left, right, hovered/clicked place
++	- hide on
++	- transitions/animations
+  - smart show at
++	- tests
+	
+SPOTTED BUGS
++ - close on hover + close timeout
++ - default show not works?
++	- close immediately on click on another menu item
+	- 'closeOn' - click, 'closImmediatelyOnHover' - should it even work???
++	- 'closImmediatelyOnHover' - what happens if we unhovering on margin??? - USE PADDING!
+
+active class tests
+

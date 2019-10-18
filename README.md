@@ -1,68 +1,164 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## React menu
+Highly customizable menu component for React.
+With it you can create every kind of menu!
 
-## Available Scripts
+## Features
+- Clear and convenient for customization menu structure;
+- Multilevel menu support;
+- Can appear on close or on hover;
+- Can disappear on close on activator element, on close outside or on hover ouside;
+- Close timeout;
+- Highly customizable menu position;
+- Open and close animations;
+- And much more...
 
-In the project directory, you can run:
+## Menu structure
+Let's look how our multilevel menu will look inside.
+It has similiar structure:
+- Container
+  - Activator
+  - Menu container
+    - Item 1(terminal)
+    - Item 2(terminal)
+    - Item 3(nonterminal)
+      - Container
+        - Activator
+        - Menu container
+          - Item 5(terminal)
+          - Item 6(terminal)
+    - Item 7(terminal)
+    ...
+Activator is an element by clicking on which menu is rendered.
 
-### `npm start`
+## Usage examples 
+Please look src/examples
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Basic menu creation
+You can use createMenu function from MenuFactory to create multilevel menu. 
+You can create a simple multilevel menu like this:
+```javascript
+// simple facade to not write same classes each time we need to create a menu
+function createAdminDashboardMenu(opts) {
+  const { activator, items } = opts;
+  return createMenu({
+    ...opts,
+    container: { attributes: { className: "container", }, },
+    activator: {
+      ...activator,
+      attributes: {
+        ...activator.attributes,
+        className: "activator item clickable",
+      },
+    },
+    menuContainer: { attributes: { className: "submenu", }, },
+    terminalItemsInfo: { attributes: { className: "item clickable", }, },
+    nonterminalItemsInfo: { attributes: { className: "clickable", }, },
+    items,
+  });
+}
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+createAdminDashboardMenu({
+      activator: {
+        img: "/icons/post.png",
+        text: "Posts",
+      },
+      items: [
+        { 
+          text: "New", 
+          img: "/icons/new.png",
+          attributes: {
+            id: "new-post",
+          }, 
+        },
+        { 
+          activator: {
+            text: "All",
+            img: "/icons/all.png",
+            attributes: {
+              id: "read-users",
+              className: "activator inner-activator item clickable",
+            }
+          },
+          items: [
+            { 
+              activator: {
+                text: "New",
+                img: "/icons/new.png",
+                attributes: {
+                  id: "read-users",
+                  className: "activator inner-activator item clickable",
+                },
+              },
+              items: [
+                { 
+                  text: "Update",
+                  img: "/icons/update.png",
+                  attributes: {
+                    id: "update-posts",
+                  }
+                },
+                { 
+                  text: "Delete",
+                  img: "/icons/delete.png",
+                  attributes: {
+                    id: "delete-posts",
+                  }
+                },
+              ],
+              activeClassname: "active",
+              ...props,
+            },
+            { 
+              text: "Update",
+              img: "/icons/update.png",
+              attributes: {
+                id: "update-posts",
+              }
+            },
+            { 
+              text: "Delete",
+              img: "/icons/delete.png",
+              attributes: {
+                id: "delete-posts",
+              }
+            },
+          ],
+          activeClassname: "active",
+          ...props,
+        },
+...
 
-### `npm test`
+You can also provide different menu creating functions to the createMenu() factory.
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Props
 
-### `npm run build`
+| Prop | Description | Acceptable values | Default |
+| --- | --- | --- | --- |
+| activeClassname | Class name that will be added to the currently active container | string | "" |
+| activatorAttributes | | object | {} |
+| activatorContents | Node that will be drawn as activator  | node | |
+| containerAttributes | | object | {} |
+| menuItems | | array of nodes | |
+| menuContainerAttributes | | object | {} |
+| menuTerminalItemAttributes | | object | {} |
+| menuNonterminalItemAttributes | | object | {} |
+| activateOn | type of event on which the menu will be activated | "click", "hover" | "click" |
+| onShow | function that will be called on the menu shown | func | |
+| onClose | function that will be called on the menu closed | func | |
+| showAt | position where menu will be showed: "left" - on left side, "right" - on right side, "cursor" - on click place, "natural" - just adds menu in dom, sometimes it can be used, for example, for dashboards, "custom" - custom relative to container position, described by customShowPos prop | "left", "right", "cursor", "natural", "custom" | "natural" |
+| customShowPos | custom position for case when "showAt" is "custom" | object like { "top": "50%", "left": "50%", } | |
+| defaultShow | show the menu by default | bool | false |
+| closeOn | type of event on which the menu will be closed | "none", "click", "hover" | "none" |
+| closeTimeout | timeout before the menu will really be closed, can be used only with "hover" | number | 0 |
+| closeImmediatelyOnHoverOnAnotherMenuItem | can be useful if using 'closeOn' = 'hover' with timeoutm showAt = 'hover' | bool | false |
+| closeImmediatelyOnClickOnAnotherMenuItem | can be useful if using 'closeOn' = 'hover' with timeout, showAt = 'click' | bool | false |
+| openAnimation | menu open animation | func | |
+| close Animation | menu close animation | func | | 
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Animations
+You can find some basic animations in MenuAnimations.js. You can also write your own. It is quite simple - animation function accepts two arguments: element itself and onFinish callback. They should call this callback when all the work is finished.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

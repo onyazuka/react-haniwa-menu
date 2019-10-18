@@ -1,7 +1,6 @@
 {
-  "name": "menu",
-  "version": "0.1.0",
-  "private": true,
+  "name": "react-haniwa-menu",
+  "version": "1.0.0",
   "dependencies": {
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
@@ -27,5 +26,23 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "keywords": [
+    "react",
+    "menu",
+    "reactjs",
+    "js",
+    "javascript"
+  ],
+  "author": "Onyazuka",
+  "license": "ISC"
 }

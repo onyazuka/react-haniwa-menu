@@ -1,0 +1,59 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "program": "${workspaceFolder}/start"
+    }
+    {
+      "name": "Debug Jest",
+      "type": "node",
+      "request": "launch",
+      "address": "localhost",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/react-scripts",
+      "args": [
+        "test",
+        "--runInBand",
+        /*
+          using cache to speed things up, (it is true by default, anyways), and NOT use --no-cache - BUT it is correct ONLY when not using watcher mode!!!
+          With watcher mode no-cache actually speeds things up!
+        */
+        "--no-cache",
+        "--watchAll=true",
+        // outcomment this if you want to run all tests
+        //"--testPathPattern=${fileBasename}",
+      ],
+      "cwd": "${workspaceRoot}",
+      "protocol": "inspector",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Debug Jest Current",
+      "type": "node",
+      "request": "launch",
+      "address": "localhost",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/react-scripts",
+      "args": [
+        "test",
+        "--runInBand",
+        /*
+          using cache to speed things up, (it is true by default, anyways), and NOT use --no-cache - BUT it is correct ONLY when not using watcher mode!!!
+          With watcher mode no-cache actually speeds things up!
+        */
+        "--no-cache",
+        "--watchAll=true",
+        "--testPathPattern=${fileBasename}",
+      ],
+      "cwd": "${workspaceRoot}",
+      "protocol": "inspector",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+    }
+  ]
+}

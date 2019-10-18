@@ -1,0 +1,71 @@
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+}
+
+.choicer-nav {
+  border: 1px solid black;
+  left: calc(50% - 400px);
+  padding: 10px;
+  position: fixed;
+  width: 800px;
+}
+
+.menu-title-nav {
+  color: white;
+  margin: 10px;
+  margin-right: 50px;
+}
+
+.menu-list-navbar {
+  align-items: center;
+  background-color: #696969;
+  display: flex;
+  justify-content: flex-start;
+  height: 50px;
+  position: fixed;
+  width: 100%;
+}
+
+*:not(.nonterm-item-nav) > .container-nav {
+  color: white;
+  padding-right: 10px;
+  width: 30px;
+}
+
+.active-nav {
+  background-color: #595959;
+}
+
+.submenu-nav {
+  background-color: #696969;
+  border: 1px solid #393939;
+  color: white;
+  z-index: 999;
+}
+
+.item-nav {
+  cursor: pointer;
+}
+
+.item-nav:not(.top-level) {
+  padding: 5px 10px;
+}
+
+.item-nav:not(.top-level) img {
+  margin-right: 10px;
+}
+
+.item-nav > div, .item-nav {
+  align-items: center;
+  display: flex;
+}
+
+.item-nav:hover {
+  background-color: #797979;
+}
