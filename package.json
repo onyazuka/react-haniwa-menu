@@ -31,7 +31,8 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1"
   },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "description": "Highly customizable menu component for React. With it you can create all kinds of menu!",
+
   "main": "index.js",
   "directories": {
     "example": "examples"
