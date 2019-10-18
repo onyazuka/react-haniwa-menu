@@ -14,7 +14,7 @@ const menuDefaultOpts = {
   activator: {
     attributes: { className: "activator" },
   },
-  submenu: {
+  menuContainer: {
     attributes: { className: "submenu" },
   },
   terminalItemsInfo: {
@@ -37,7 +37,7 @@ const menuDefaultMultilevelOpts = {
   activator: {
     attributes: { className: "activator" },
   },
-  submenu: {
+  menuContainer: {
     attributes: { className: "submenu" },
   },
   terminalItemsInfo: {
