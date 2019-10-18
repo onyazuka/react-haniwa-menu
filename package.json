@@ -44,6 +44,10 @@
   "directories": {
     "example": "examples"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onyazuka/react-haniwa-menu.git"
+  },
   "keywords": [
     "react",
     "menu",
