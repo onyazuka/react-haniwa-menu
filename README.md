@@ -1,5 +1,6 @@
 ## React menu
 Highly customizable menu component for React.
+
 With it you can create all kinds of menu!
 
 ## Features
@@ -28,6 +29,7 @@ It has similiar structure:
           - Item 6(terminal)
     - Item 7(terminal)
     ...
+
 Activator is an element by clicking on which menu is rendered.
 
 ## Usage examples 
@@ -127,9 +129,8 @@ createAdminDashboardMenu({
           ...props,
         },
 ...
-
-You can also provide different menu creating functions to the createMenu() factory.
 ```
+You can also provide different menu creating functions to the createMenu() factory.
 
 ## Props
 
