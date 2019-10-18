@@ -1,6 +1,6 @@
 ## React menu
 Highly customizable menu component for React.
-With it you can create every kind of menu!
+With it you can create all kinds of menu!
 
 ## Features
 - Clear and convenient for customization menu structure;
