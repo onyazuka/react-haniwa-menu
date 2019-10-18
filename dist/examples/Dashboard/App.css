@@ -1,0 +1,90 @@
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+}
+
+.choicer {
+  border: 1px solid black;
+  left: calc(50% - 400px);
+  padding: 10px;
+  position: fixed;
+  width: 800px;
+}
+
+.menu-title {
+  color: white;
+  margin: 10px;
+}
+
+.menu-list-left, .menu-list-multilevel-left {
+  background-color: #696969;
+  height: 100%;
+  position: fixed;
+  width: 200px;
+}
+
+.menu-list-right {
+  background-color: #696969;
+  height: 100%;
+  position: fixed;
+  right: 0;
+  width: 200px;
+}
+
+.container {
+  color: white;
+  width: 100%;
+}
+
+.active {
+  background-color: #595959;
+}
+
+.activator::after {
+  content: "▸";
+  color: white;
+  padding-left: 5px;
+  font-size: 10px;
+}
+
+.active > .activator::after {
+  content: "▾";
+  color: white;
+  padding-left: 5px;
+  font-size: 10px;
+}
+
+.submenu {
+  background-color: #696969;
+  border: 1px solid #393939;
+  color: white;
+  z-index: 999;
+}
+
+.item {
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 100%;
+}
+
+.item > div, .item {
+  align-items: center;
+  display: flex;
+}
+
+.item {
+  padding: 5px;
+}
+
+.item:hover {
+  background-color: #797979;
+}
+
+.item img {
+  margin-right: 5px;
+}

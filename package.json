@@ -1,6 +1,11 @@
 {
   "name": "react-haniwa-menu",
   "version": "1.0.4",
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ]
+  },
   "dependencies": {
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
@@ -10,7 +15,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "publish:npm": "rm -rf dist && mkdir dist &&  babel ./src -d dist --copy-files"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -28,11 +34,13 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/preset-react": "^7.6.3",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1"
   },
   "description": "Highly customizable menu component for React. With it you can create all kinds of menu!",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "directories": {
     "example": "examples"
   },
