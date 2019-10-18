@@ -3,6 +3,12 @@ Highly customizable menu component for React.
 
 With it you can create all kinds of menu!
 
+## Installation 
+npm i react-haniwa-menu
+
+## Live Demo
+https://onyazuka.github.io/ 
+
 ## Features
 - Clear and convenient for customization menu structure;
 - Multilevel menu support;
