@@ -47,6 +47,7 @@ You can create a simple multilevel menu like this:
 ```javascript
 import {createMenu} from 'react-haniwa-menu';
 
+
 // simple facade to not write same classes each time we need to create a menu
 function createAdminDashboardMenu(opts) {
   const { activator, items } = opts;
@@ -63,6 +64,7 @@ function createAdminDashboardMenu(opts) {
     menuContainer: { attributes: { className: "submenu", }, },
     terminalItemsInfo: { attributes: { className: "item clickable", }, },
     nonterminalItemsInfo: { attributes: { className: "clickable", }, },
+		// itemCreator: some function that accepts item and returns dom element, default accepts item with 'img' and 'text' keys
     items,
   });
 }
