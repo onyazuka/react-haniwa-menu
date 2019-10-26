@@ -1,7 +1,7 @@
 ## React menu
 Highly customizable menu component for React.
 
-With it you can create all kinds of menu!
+With it you can create any kind of menu!
 
 ## Installation 
 npm i react-haniwa-menu
@@ -10,7 +10,7 @@ npm i react-haniwa-menu
 https://onyazuka.github.io/ 
 
 ## Features
-- Clear and convenient for customization menu structure;
+- Clear and convenient menu structure;
 - Multilevel menu support;
 - Can appear on close or on hover;
 - Can disappear on close on activator element, on close outside or on hover ouside;
@@ -36,112 +36,94 @@ It has similiar structure:
     - Item 7(terminal)
     ...
 
-Activator is an element by clicking on which menu is rendered.
+Activator is the element by clicking on which menu is rendered.
 
 ## Usage examples 
 Please look src/examples
 
 ## Basic menu creation
-You can use createMenu function from MenuFactory to create multilevel menu. 
-You can create a simple multilevel menu like this:
+You can create a very basic single level menu like this:
 ```javascript
-import {createMenu} from 'react-haniwa-menu';
+import React from 'react';
+import Menu from 'react-haniwa-menu';
 
+// common props for all submenus
+const menuProps = {
+  activeClassname: "active",
+  containerAttributes: { className: "container", },
+  activatorAttributes: { className: "activator item clickable", },
+  menuContainerAttributes: { className: "submenu" },
+  menuTerminalItemAttributes: { className: "item clickable", },
+  menuNonterminalItemAttributes: { className: "clickable", },
+};
 
-// simple facade to not write same classes each time we need to create a menu
-function createAdminDashboardMenu(opts) {
-  const { activator, items } = opts;
-  return createMenu({
-    ...opts,
-    container: { attributes: { className: "container", }, },
-    activator: {
-      ...activator,
-      attributes: {
-        ...activator.attributes,
-        className: "activator item clickable",
-      },
-    },
-    menuContainer: { attributes: { className: "submenu", }, },
-    terminalItemsInfo: { attributes: { className: "item clickable", }, },
-    nonterminalItemsInfo: { attributes: { className: "clickable", }, },
-		// itemCreator: some function that accepts item and returns dom element, default accepts item with 'img' and 'text' keys
-    items,
-  });
+// here we are creating a single menu item
+function createMenuItem(item) {
+  return ( 
+    <div {...item.attributes}>
+      { item.img ? <img src={`${item.img}`}></img> : null }
+      <span>{`${item.text ? item.text : ""}`}</span>
+    </div>
+  );
+}
+export default function Dashboard(props) {
+  return (
+    <div className={`${props.type} noselect`}>
+    <h2 className="menu-title">Dashboard</h2>
+    <Menu
+      {...menuProps}
+      activatorContents={createMenuItem({ img: "/icons/post.png", text: "Posts",})}
+      menuItems={[
+        createMenuItem({  text: "New", img: "/icons/new.png", attributes: { id: "new-post", },  }),
+        createMenuItem({  text: "All", img: "/icons/all.png", attributes: { id: "read-posts", },  }),
+        createMenuItem({  text: "Update", img: "/icons/update.png", attributes: { id: "update-posts", },  }),
+        createMenuItem({  text: "Delete", img: "/icons/delete.png", attributes: { id: "delete-posts", },  }),
+      ]}
+      {...props}
+    >
+    </Menu>
+    <Menu
+      {...menuProps}
+      activatorContents={createMenuItem({ img: "/icons/file.png", text: "Files",})}
+      menuItems={[
+        createMenuItem({  text: "Images", img: "/icons/image.png", attributes: { id: "file-manager-images", },  }),
+        createMenuItem({  text: "Documents", img: "/icons/document.png", attributes: { id: "file-manager-documents", },  }),
+        createMenuItem({  text: "Videos", img: "/icons/video.png", attributes: { id: "file-manager-videos", },  }),
+      ]}
+      {...props}
+    >
+    </Menu>
+  	...
+    </div>
+  );
 }
 
-createAdminDashboardMenu({
-      activator: {
-        img: "/icons/post.png",
-        text: "Posts",
-      },
-      items: [
-        { 
-          text: "New", 
-          img: "/icons/new.png",
-          attributes: {
-            id: "new-post",
-          }, 
-        },
-        { 
-          activator: {
-            text: "All",
-            img: "/icons/all.png",
-            attributes: {
-              id: "read-users",
-              className: "activator inner-activator item clickable",
-            }
-          },
-          items: [
-            { 
-              activator: {
-                text: "New",
-                img: "/icons/new.png",
-                attributes: {
-                  id: "read-users",
-                  className: "activator inner-activator item clickable",
-                },
-              },
-              items: [
-                { 
-                  text: "Update",
-                  img: "/icons/update.png",
-                  attributes: {
-                    id: "update-posts",
-                  }
-                },
-                { 
-                  text: "Delete",
-                  img: "/icons/delete.png",
-                  attributes: {
-                    id: "delete-posts",
-                  }
-                },
-              ],
-              activeClassname: "active",
-              ...props,
-            },
-            { 
-              text: "Update",
-              img: "/icons/update.png",
-              attributes: {
-                id: "update-posts",
-              }
-            },
-            { 
-              text: "Delete",
-              img: "/icons/delete.png",
-              attributes: {
-                id: "delete-posts",
-              }
-            },
-          ],
-          activeClassname: "active",
-          ...props,
-        },
-...
 ```
-You can also provide different menu creating functions to the createMenu() factory.
-To create menu directly use import Menu from 'react-haniwa-menu';
+
+And how about multilevel menu? You can just use Menu component as a menu item. It is as simple as this:
+```javascript
+<Menu
+    {...menuProps}
+    activatorContents={createMenuItem({ img: "/icons/all.png", text: "All",})}
+    menuItems={[
+    <Menu
+        {...menuProps}
+        activatorContents={createMenuItem({ img: "/icons/new.png", text: "New",})}
+        menuItems={[
+            createMenuItem({  text: "Update", img: "/icons/update.png", attributes: { id: "update-posts", },  }),
+            createMenuItem({  text: "Delete", img: "/icons/delete.png", attributes: { id: "delete-posts", },  }),
+        ]}
+        {...props}
+    >
+    </Menu>,
+    createMenuItem({  text: "Update", img: "/icons/update.png", attributes: { id: "update-posts", },  }),
+    createMenuItem({  text: "Delete", img: "/icons/delete.png", attributes: { id: "delete-posts", },  }),
+    ]}
+    {...props}
+>
+</Menu>,
+
+```
 
 ## Props
 
@@ -169,8 +151,12 @@ To create menu directly use import Menu from 'react-haniwa-menu';
 | close Animation | menu close animation | func | | 
 
 ## Animations
-You can find some basic animations in MenuAnimations.js. You can also write your own. It is quite simple - animation function accepts two arguments: element itself and onFinish callback. They should call this callback when all the work is finished.
-All available animations can be obtained with import {MenuAnimations} from 'react-haniwa-menu';
+You can find some basic animations in MenuAnimations.js. You can also write your own ones. It is quite simple - animation function accepts two arguments: element itself and onFinish callback. They should call this callback when all the work is finished.
+
+All available animations can be obtained with:
+```javascript
+import {MenuAnimations} from 'react-haniwa-menu';
+```
 
 
 
