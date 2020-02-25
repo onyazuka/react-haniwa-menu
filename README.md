@@ -15,13 +15,12 @@ https://onyazuka.github.io/
 - Can appear on close or on hover;
 - Can disappear on close on activator element, on close outside or on hover ouside;
 - Close timeout;
-- Highly customizable menu position;
+- Customizable menu position;
 - Open and close animations;
 - And much more...
 
 ## Menu structure
-Let's look how our multilevel menu will look inside.
-It has similiar structure:
+The created menu will have similiar structure:
 - Container
   - Activator
   - Menu container
@@ -36,7 +35,7 @@ It has similiar structure:
     - Item 7(terminal)
     ...
 
-Activator is the element by clicking on which menu is rendered.
+'Activator' is the element that should be clicked to show/hide the menu.
 
 ## Usage examples 
 Please look src/examples
@@ -140,7 +139,7 @@ And how about multilevel menu? You can just use Menu component as a menu item. I
 | activateOn | type of event on which the menu will be activated | "click", "hover" | "click" |
 | onShow | function that will be called on the menu shown | func | |
 | onClose | function that will be called on the menu closed | func | |
-| showAt | position where menu will be showed: "left" - on left side, "right" - on right side, "cursor" - on click place, "natural" - just adds menu in dom, sometimes it can be used, for example, for dashboards, "custom" - custom relative to container position, described by customShowPos prop | "left", "right", "cursor", "natural", "custom" | "natural" |
+| showAt | position where menu will be shown: "left" - on left side, "right" - on right side, "cursor" - on click place, "natural" - just adds menu in dom, sometimes it can be used, for example, for dashboards, "custom" - custom relative to container position, described by customShowPos prop | "left", "right", "cursor", "natural", "custom" | "natural" |
 | customShowPos | custom position for case when "showAt" is "custom" | object like { "top": "50%", "left": "50%", } | |
 | defaultShow | show the menu by default | bool | false |
 | closeOn | type of event on which the menu will be closed | "none", "click", "hover" | "none" |
@@ -151,7 +150,7 @@ And how about multilevel menu? You can just use Menu component as a menu item. I
 | close Animation | menu close animation | func | | 
 
 ## Animations
-You can find some basic animations in MenuAnimations.js. You can also write your own ones. It is quite simple - animation function accepts two arguments: element itself and onFinish callback. They should call this callback when all the work is finished.
+You can find some basic animations in MenuAnimations.js. You can also write your own ones. It is quite simple - animation function accepts two arguments: element itself and onFinish callback. It should call this callback when all work is finished.
 
 All available animations can be obtained with:
 ```javascript
